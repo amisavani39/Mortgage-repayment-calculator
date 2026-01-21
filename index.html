@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mortgage Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT FORM -->
+  <div class="card form-card">
+    <div class="card-header">
+      <h2>Mortgage Calculator</h2>
+      <button class="clear-btn" onclick="clearAll()">Clear All</button>
+    </div>
+
+    <label>Mortgage Amount</label>
+    <input type="number" id="amount" placeholder="£ 300000">
+
+    <div class="row">
+      <div>
+        <label>Mortgage Term</label>
+        <input type="number" id="years" placeholder="25">
+      </div>
+      <div>
+        <label>Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="5.25">
+      </div>
+    </div>
+
+    <label>Mortgage Type</label>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="type" value="repayment" checked>
+        Repayment
+      </label>
+      <label>
+        <input type="radio" name="type" value="interest">
+        Interest Only
+      </label>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate Repayments</button>
+  </div>
+
+  <!-- RIGHT RESULT -->
+  <div class="card result-card">
+    <h3>Your results</h3>
+    <p class="small">
+      Your results are shown below based on the information you provided.
+    </p>
+
+    <div class="result-box">
+      <p>Your monthly repayments</p>
+      <h1 id="monthly">£0.00</h1>
+      <hr>
+      <p>Total you'll repay</p>
+      <h4 id="total">£0.00</h4>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
