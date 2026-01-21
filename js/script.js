@@ -3,6 +3,11 @@ function calculate() {
   let years = +document.getElementById("years").value;
   let rate = +document.getElementById("rate").value;
 
+  if (!amount || !years || !rate) {
+    alert("Please enter all values");
+    return;
+  }
+
   let monthlyRate = rate / 100 / 12;
   let months = years * 12;
 
@@ -22,7 +27,9 @@ function calculate() {
   document.getElementById("total").innerText = "£" + total.toFixed(2);
 }
 
-document.querySelectorAll('input[name="type"]').forEach((r) => r.addEventListener("change", calculate));
+document.querySelectorAll('input[name="type"]').forEach((radio) => {
+  radio.addEventListener("change", calculate);
+});
 
 function clearAll() {
   document.getElementById("amount").value = "";
