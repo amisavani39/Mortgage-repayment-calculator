@@ -1,69 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Mortgage Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<div class="wrapper">
+  <body>
+    <div class="container">
+      <!-- left -->
+      <div class="left">
+        <div class="top">
+          <h2>Mortgage Calculator</h2>
+          <span id="clear">Clear All</span>
+        </div>
 
-  <!-- LEFT FORM -->
-  <div class="card form-card">
-    <div class="card-header">
-      <h2>Mortgage Calculator</h2>
-      <button class="clear-btn" onclick="clearAll()">Clear All</button>
-    </div>
+        <label>Mortgage Amount</label>
+        <div class="input-group">
+          <span>£</span>
+          <input type="number" id="amount" />
+        </div>
 
-    <label>Mortgage Amount</label>
-    <input type="number" id="amount" placeholder="£ 300000">
+        <div class="row">
+          <div>
+            <label>Mortgage Term</label>
+            <div class="input-group">
+              <input type="number" id="years" />
+              <span>years</span>
+            </div>
+          </div>
 
-    <div class="row">
-      <div>
-        <label>Mortgage Term</label>
-        <input type="number" id="years" placeholder="25">
+          <div>
+            <label>Interest Rate</label>
+            <div class="input-group">
+              <input type="number" id="rate" />
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+
+        <label>Mortgage Type</label>
+
+        <div class="radio">
+          <input type="radio" name="type" value="repayment" />
+          Repayment
+        </div>
+
+        <div class="radio">
+          <input type="radio" name="type" value="interest" />
+          Interest Only
+        </div>
+
+        <button id="calculate">
+          <img src="images/icon-calculator.svg" />Calculate Repayments
+        </button>
+
+        <p class="error" id="error"></p>
       </div>
-      <div>
-        <label>Interest Rate (%)</label>
-        <input type="number" id="rate" placeholder="5.25">
+
+      <!-- right -->
+      <div class="right" id="resultBox">
+        <div class="placeholder" id="placeholder">
+          <img src="images/illustration-empty.svg" />
+          <h3>Results shown here</h3>
+          <p>Complete the form and click calculate repayments.</p>
+        </div>
+
+        <div class="results hidden" id="results">
+          <h1 class="font">Your result</h1>
+          <p class="desc">
+            Your results are based on the provided information. Edit the form
+            and click “calculate repayments” to adjust.
+          </p>
+
+          <div class="result-card">
+            <p class="label">Your monthly repayments</p>
+            <h1 id="monthly">£0</h1>
+
+            <div class="divider"></div>
+
+            <p class="label">Total you'll repay</p>
+            <h3 id="total">£0</h3>
+          </div>
+        </div>
       </div>
     </div>
 
-    <label>Mortgage Type</label>
-    <div class="radio-group">
-      <label>
-        <input type="radio" name="type" value="repayment" checked>
-        Repayment
-      </label>
-      <label>
-        <input type="radio" name="type" value="interest">
-        Interest Only
-      </label>
-    </div>
-
-    <button class="calc-btn" onclick="calculate()">Calculate Repayments</button>
-  </div>
-
-  <!-- RIGHT RESULT -->
-  <div class="card result-card">
-    <h3>Your results</h3>
-    <p class="small">
-      Your results are shown below based on the information you provided.
-    </p>
-
-    <div class="result-box">
-      <p>Your monthly repayments</p>
-      <h1 id="monthly">£0.00</h1>
-      <hr>
-      <p>Total you'll repay</p>
-      <h4 id="total">£0.00</h4>
-    </div>
-  </div>
-
-</div>
-
-<script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

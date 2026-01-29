@@ -1,40 +1,61 @@
-function calculate() {
-  let amount = +document.getElementById("amount").value;
-  let years = +document.getElementById("years").value;
-  let rate = +document.getElementById("rate").value;
+const btn = document.getElementById("calculate");
+const clear = document.getElementById("clear");
 
-  if (!amount || !years || !rate) {
-    alert("Please enter all values");
+btn.addEventListener("click", function () {
+  const amount = document.getElementById("amount").value;
+  const years = document.getElementById("years").value;
+  const rate = document.getElementById("rate").value;
+  const type = document.querySelector("input[name='type']:checked").value;
+
+  if (amount === "" || years === "" || rate === "") {
+    document.getElementById("error").innerText = "Please fill all fields";
     return;
   }
 
-  let monthlyRate = rate / 100 / 12;
-  let months = years * 12;
+  document.getElementById("error").innerText = "";
 
-  let type = document.querySelector('input[name="type"]:checked').value;
+  const principal = parseFloat(amount);
+  const months = years * 12;
+  const monthlyRate = rate / 100 / 12;
 
-  let monthly, total;
+  let monthly = 0;
 
   if (type === "repayment") {
-    monthly = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months));
-    total = monthly * months;
+    monthly =
+      (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1);
   } else {
-    monthly = amount * monthlyRate;
-    total = monthly * months;
+    monthly = principal * monthlyRate;
   }
+
+  const total = monthly * months;
+
+  document.getElementById("placeholder").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+
+  const hero = document.getElementById("hero");
+  if (hero) hero.style.display = "none";
 
   document.getElementById("monthly").innerText = "£" + monthly.toFixed(2);
   document.getElementById("total").innerText = "£" + total.toFixed(2);
-}
-
-document.querySelectorAll('input[name="type"]').forEach((radio) => {
-  radio.addEventListener("change", calculate);
 });
 
-function clearAll() {
-  document.getElementById("amount").value = "";
-  document.getElementById("years").value = "";
-  document.getElementById("rate").value = "";
-  document.getElementById("monthly").innerText = "£0.00";
-  document.getElementById("total").innerText = "£0.00";
+clear.addEventListener("click", function () {
+  location.reload();
+});
+
+
+ function clearAll() {
+  // clear text / number inputs
+  document.querySelectorAll("input").forEach(input => {
+    if (input.type === "radio" || input.type === "checkbox") {
+      input.checked = false;
+    } else {
+      input.value = "";
+    }
+  });
 }
+
+
+
+
